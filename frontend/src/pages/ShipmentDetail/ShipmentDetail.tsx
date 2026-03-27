@@ -3,6 +3,7 @@ import MilestoneTimeline, { MilestoneDetail } from "./MilestoneTimeline/Mileston
 import ShipmentDetailHeader from "./ShipmentDetailHeader/ShipmentDetailHeader";
 import ShipmentMap from "./ShipmentMap/ShipmentMap";
 import DeliveryProofUpload from "./DeliveryProofUpload/DeliveryProofUpload";
+import DeliveryConfirmation from "../../components/shipment/DeliveryConfirmation/DeliveryConfirmation";
 
 const ShipmentDetail: React.FC = () => {
   const shipmentHeaderData = {
@@ -63,6 +64,13 @@ const ShipmentDetail: React.FC = () => {
         </div>
 
         <DeliveryProofUpload />
+        <DeliveryConfirmation
+          shipmentId={shipmentHeaderData.shipmentId}
+          status={shipmentHeaderData.status}
+          onConfirm={async (id, rating, feedback) => {
+            console.log('Delivery confirmed', { id, rating, feedback });
+          }}
+        />
       </div>
     </div>
   );
