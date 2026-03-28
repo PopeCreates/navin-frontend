@@ -1,5 +1,5 @@
-import React from 'react';
 import { describe, it, expect } from 'vitest';
+import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -41,12 +41,6 @@ describe('NotificationDropdown', () => {
     expect(badge).toBeInTheDocument();
   });
 });
-
-const renderWithRouter = (component: React.ReactElement) => {
-  return render(<MemoryRouter>{component}</MemoryRouter>);
-};
-
-describe('NotificationDropdown', () => {
   it('renders the bell icon with unread badge', () => {
     renderWithRouter(<NotificationDropdown />);
     
@@ -102,4 +96,4 @@ describe('NotificationDropdown', () => {
     
     expect(screen.queryByText('View All Notifications')).not.toBeInTheDocument();
   });
-});
+
