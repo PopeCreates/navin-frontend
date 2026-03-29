@@ -12,6 +12,7 @@ import {
   X,
   CreditCard,
   Bell,
+  User,
 } from 'lucide-react';
 import TopHeader from './TopHeader/TopHeader';
 
@@ -31,6 +32,7 @@ const DashboardLayout: React.FC = () => {
   ];
 
   const systemMenu = [
+    { name: 'Profile', icon: <User size={18} />, path: '/dashboard/profile' },
     { name: 'Settings', icon: <Settings size={18} />, path: '/dashboard/settings' },
     { name: 'Help Center', icon: <HelpCircle size={18} />, path: '/dashboard/help-center' },
   ];

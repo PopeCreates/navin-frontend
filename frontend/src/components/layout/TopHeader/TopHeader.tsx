@@ -1,5 +1,6 @@
 import React from "react";
-import { Menu, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Menu, Search, User } from "lucide-react";
 import { NotificationDropdown } from "../../notifications/NotificationDropdown/NotificationDropdown";
 
 export interface TopHeaderProps {
@@ -7,6 +8,8 @@ export interface TopHeaderProps {
 }
 
 const TopHeader: React.FC<TopHeaderProps> = ({ toggleSidebar }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="sticky top-0 z-20 w-full bg-[#14171e]">
       <header className="w-full max-w-[1080px] mx-auto h-[72px] flex flex-row items-center justify-between px-4 bg-transparent border-b border-slate-800">
@@ -34,8 +37,15 @@ const TopHeader: React.FC<TopHeaderProps> = ({ toggleSidebar }) => {
         </div>
 
         {/* Right */}
-        <div className="flex items-center justify-end w-[200px]">
+        <div className="flex items-center justify-end gap-3 w-[200px]">
           <NotificationDropdown />
+          <button
+            onClick={() => navigate("/dashboard/profile")}
+            className="w-9 h-9 rounded-full bg-[#1e2433] border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-[#62ffff] transition-colors cursor-pointer"
+            title="Profile"
+          >
+            <User size={18} />
+          </button>
         </div>
       </header>
     </div>
