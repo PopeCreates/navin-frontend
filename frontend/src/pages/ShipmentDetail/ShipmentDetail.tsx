@@ -4,6 +4,7 @@ import ShipmentDetailHeader from "./ShipmentDetailHeader/ShipmentDetailHeader";
 import ShipmentMap from "./ShipmentMap/ShipmentMap";
 import DeliveryProofUpload from "./DeliveryProofUpload/DeliveryProofUpload";
 import DeliveryConfirmation from "../../components/shipment/DeliveryConfirmation/DeliveryConfirmation";
+import PaymentStatus, { PaymentData } from "./PaymentStatus/PaymentStatus";
 
 const ShipmentDetail: React.FC = () => {
   const shipmentHeaderData = {
@@ -17,6 +18,16 @@ const ShipmentDetail: React.FC = () => {
 
   const handleUpdateStatus = () => { console.log("Update status clicked"); };
   const handleTrack = () => { console.log("Track clicked"); };
+
+  // Mock payment data - set to null to show empty state
+  const mockPaymentData: PaymentData | null = {
+    amount: "1,500.00",
+    tokenSymbol: "XLM",
+    status: "escrowed",
+    payerAddress: "GBZXN7PIRZGNMHGA7MUUUF4GWPY5AYPV6LY4UV2GL6VJGIQRXFDNMADI",
+    payeeAddress: "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB",
+    transactionHash: "a]b c9d4e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b7c6d5e4f3a2b1c0d9",
+  };
 
   const mockMilestones: MilestoneDetail[] = [
     { id: "1", name: "Order Confirmed", timestamp: "2026-02-20 09:15 AM EST", location: "New York Distribution Center, NY", blockchainAddress: "GABCD1234567890WXYZ1234567890ABCDEF", status: "completed", notes: "Order successfully confirmed and payment verified on blockchain. Shipment prepared for pickup.", sensorReadings: { temperature: "22°C", humidity: "45%", pressure: "1013 hPa" } },
@@ -63,6 +74,7 @@ const ShipmentDetail: React.FC = () => {
           <MilestoneTimeline milestones={mockMilestones} />
         </div>
 
+        <PaymentStatus payment={mockPaymentData} />
         <DeliveryProofUpload />
         <DeliveryConfirmation
           shipmentId={shipmentHeaderData.shipmentId}
